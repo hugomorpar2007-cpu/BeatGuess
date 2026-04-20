@@ -1,4 +1,5 @@
 # BeatGuess
+<<<<<<< HEAD
 
 1. Prova HTML
 
@@ -128,3 +129,6 @@ Clip d'àudio: *Fragment de "Shivers"*
 * Les preguntes han d'aparèixer en ordre aleatori a cada partida.
 * L'usuari té un màxim de 10 segons per escoltar el clip abans de respondre.
 * En seleccionar una opció, s'ha de marcar en verd si és correcta i en vermell si és incorrecta.
+=======
+1.s
+>>>>>>> 7202734094b2fd2a294a8999011f2651c0609711
