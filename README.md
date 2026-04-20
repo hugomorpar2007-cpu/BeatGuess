@@ -1,7 +1,5 @@
 # BeatGuess
 
-1. Prova HTML
-
 Aquest és un quiz interactiu de música on has d'endevinar l'artista escoltant un fragment de la seva cançó.
 
 ---
