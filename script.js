@@ -72,6 +72,7 @@ function startQuiz(genre) {
     loadQuestion();
 }
 
+
 function loadQuestion() {
     const q = currentQuestions[currentQuestionIndex];
     songNameText.innerText = `🎵 Fragmento de: "${q.song}"`;
