@@ -40,7 +40,6 @@ const songNameText = document.getElementById('song-name');
 const genreTag = document.getElementById('current-genre-text');
 const btnPlayHero = document.getElementById('btn-play-hero');
 
-// 1. Selección visual del estilo
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
         document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
@@ -49,7 +48,6 @@ document.querySelectorAll('.card').forEach(card => {
     });
 });
 
-// 2. Inicio del juego tras pulsar "A jugar"
 btnPlayHero.addEventListener('click', () => {
     if (!selectedGenre) {
         alert("¡Selecciona primero un estilo musical!");
@@ -91,7 +89,7 @@ function loadQuestion() {
 function checkAnswer(idx) {
     const q = currentQuestions[currentQuestionIndex];
     if (idx === q.correct) {
-        alert("¡Correcto! 🔥");
+        alert("¡Correcto! ✅");
     } else {
         alert(`Incorrecto. Era ${q.options[q.correct]}`);
     }
