@@ -56,13 +56,15 @@ body {
 .section-title {
   margin-bottom: 15px;
   font-size: 18px;
+  color: #4cff4c;
+
 }
 
 .styles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -71,6 +73,7 @@ body {
   border-radius: 20px;
   transition: 0.3s;
   cursor: pointer;
+  text-align: center;
 }
 
 .card:hover {
@@ -84,42 +87,20 @@ body {
 }
 
 .bottom {
-  display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
 }
 
 .featured {
   background: #111;
-  padding: 25px;
-  border-radius: 20px;
+  padding: 30px;
+  border-radius: 30px;
 }
 
 .badge {
   color: #a855f7;
 }
 
-.ranking {
-  background: linear-gradient(180deg, #002b14, #001a0d);
-  padding: 25px;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.ranking h1 {
-  font-size: 40px;
-  color: #4cff4c;
-}
-
-.ranking button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: 1px solid #4cff4c;
-  background: transparent;
-  color: #4cff4c;
-  cursor: pointer;
-}
 
 @media (max-width: 768px) {
   .bottom {
