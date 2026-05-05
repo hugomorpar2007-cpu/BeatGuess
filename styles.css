@@ -72,11 +72,17 @@ body {
   border-radius: 20px;
   transition: 0.3s;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .card:hover {
   transform: scale(1.05);
-  border: 1px solid #4cff4c;
+  border: 2px solid #4cff4c;
+}
+
+.active {
+  border: 2px solid #4cff4c;
+  box-shadow: 0 0 15px rgba(76,255,76,0.5);
 }
 
 .card p {
@@ -123,12 +129,33 @@ body {
 }
 
 @media (max-width: 768px) {
-  .bottom {
-    grid-template-columns: 1fr;
-  }
+  .bottom { grid-template-columns: 1fr; }
 }
 
-.active {
-  border: 2px solid #4cff4c;
-  box-shadow: 0 0 15px rgba(76,255,76,0.5);
+/* Lógica de juego */
+.hidden {
+  display: none !important;
+}
+
+.option-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid #333;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.3s;
+  color: white;
+}
+
+.option-card:hover {
+  border-color: #4cff4c;
+}
+
+#options-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
 }
