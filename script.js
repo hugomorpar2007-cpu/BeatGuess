@@ -13,32 +13,69 @@ const questionsData = {
     ],
     "Hip-Hop": [
         { song: "Dracukeo", options: ["Yung Beef", "Kidd Keo", "C. Tangana", "Kaydy Cain"], correct: 1 },
-        { song: "Safaera", options: ["Bad Bunny", "J Balvin", "Rauw Alejandro", "Anuel AA"], correct: 0 },
+        { song: "Safaera", options: ["Anuel AA", "J Balvin", "Rauw Alejandro", "Bad Bunny"], correct: 3 },
         { song: "Columbia", options: ["Quevedo", "Myke Towers", "Feid", "Mora"], correct: 0 },
-        { song: "Baby Hello", options: ["Bizarrap", "Mora", "Jhayco", "Trueno"], correct: 2 },
+        { song: "Baby Hello", options: ["Mora", "Bizarrap", "Jhayco", "Trueno"], correct: 1 },
         { song: "Lala", options: ["Ozuna", "Myke Towers", "Maluma", "Arcángel"], correct: 1 },
         { song: "Bzrp Music Sessions, Vol. 52", options: ["Tiago PZK", "Villano Antillano", "Quevedo", "Eladio Carrión"], correct: 2 },
-        { song: "Lollypop", options: ["Kidd Keo", "Bad Bunny", "Bryant Myers", "Anuel AA"], correct: 0 },
-        { song: "Classy 101", options: ["Young Miko", "Villano Antillano", "Nicki Nicole", "Maria Becerra"], correct: 0 }
+        { song: "Lollypop", options: ["Anuel AA", "Bad Bunny", "Bryant Myers", "Kidd Keo"], correct: 3 },
+        { song: "Classy 101", options: ["Young Miko", "Villano Antillano", "Nicki Nicole", "Maria Becerra"], correct: 0 },
+        { song: "Punto G", options: ["Quevedo", "Mora", "Bad Bunny", "Anuel AA"], correct: 0 },
+        { song: "Vista al Mar", options: ["Feid", "Quevedo", "Rauw Alejandro", "Myke Towers"], correct: 1 }
     ],
     "Rock": [
-        { song: "Bohemian Rhapsody", options: ["Queen", "The Beatles", "Led Zeppelin", "Deep Purple"], correct: 0 }
+        { song: "Bohemian Rhapsody", options: ["Queen", "The Beatles", "Led Zeppelin", "Deep Purple"], correct: 0 },
+        { song: "Smells Like Teen Spirit", options: ["Nirvana", "Pearl Jam", "Foo Fighters", "Soundgarden"], correct: 0 },
+        { song: "Back In Black", options: ["AC/DC", "Guns N' Roses", "Iron Maiden", "Metallica"], correct: 0 },
+        { song: "Highway to Hell", options: ["AC/DC", "Led Zeppelin", "Black Sabbath", "The Rolling Stones"], correct: 0 },
+        { song: "Sweet Child O' Mine", options: ["Guns N' Roses", "Bon Jovi", "Aerosmith", "Def Leppard"], correct: 0 },
+        { song: "Under the Bridge", options: ["Red Hot Chili Peppers", "Green Day", "Radiohead", "U2"], correct: 0 },
+        { song: "Wonderwall", options: ["Oasis", "Blur", "The Verve", "Coldplay"], correct: 0 },
+        { song: "Seven Nation Army", options: ["The White Stripes", "The Strokes", "The Black Keys", "Arctic Monkeys"], correct: 0 },
+        { song: "Enter Sandman", options: ["Metallica", "Megadeth", "Pantera", "Slayer"], correct: 0 },
+        { song: "Livin' on a Prayer", options: ["Bon Jovi", "Journey", "Van Halen", "Whitesnake"], correct: 0 }
     ],
     "Electrónica": [
-        { song: "Levels", options: ["Avicii", "Tiësto", "David Guetta", "Skrillex"], correct: 0 }
+        { song: "Levels", options: ["Avicii", "Tiësto", "David Guetta", "Skrillex"], correct: 0 },
+        { song: "Titanium", options: ["David Guetta", "Calvin Harris", "Alesso", "Zedd"], correct: 0 },
+        { song: "Animals", options: ["Martin Garrix", "Hardwell", "Nicky Romero", "Dimitri Vegas"], correct: 0 },
+        { song: "One More Time", options: ["Daft Punk", "Justice", "Chemical Brothers", "Fatboy Slim"], correct: 0 },
+        { song: "Clarity", options: ["Zedd", "Kaskade", "Porter Robinson", "Madeon"], correct: 0 },
+        { song: "Lean On", options: ["Major Lazer", "Diplo", "DJ Snake", "Skrillex"], correct: 0 },
+        { song: "Don't You Worry Child", options: ["Swedish House Mafia", "Axwell", "Sebastian Ingrosso", "Steve Angello"], correct: 0 },
+        { song: "Wake Me Up", options: ["Avicii", "Kygo", "Robin Schulz", "Lost Frequencies"], correct: 0 },
+        { song: "Prayer in C", options: ["Lilly Wood & The Prick", "Bakermat", "Klingande", "Felix Jaehn"], correct: 0 },
+        { song: "Summer", options: ["Calvin Harris", "Avicii", "Alesso", "Sigala"], correct: 0 }
     ]
 };
 
 let selectedGenre = null;
 let currentQuestions = [];
 let currentQuestionIndex = 0;
+let timer;
+let timeLeft = 15;
+let audio = new Audio(); // Instancia global de audio
 
 const mainMenu = document.getElementById('main-menu');
 const gameScreen = document.getElementById('game-screen');
 const optionsContainer = document.getElementById('options-container');
 const songNameText = document.getElementById('song-name');
 const genreTag = document.getElementById('current-genre-text');
-const btnPlayHero = document.getElementById('btn-play-hero');
+const timerDisplay = document.getElementById('timer-bar');
+
+document.addEventListener("DOMContentLoaded", () => {
+    const nombreUsuario = localStorage.getItem("usuario");
+    if (nombreUsuario) {
+        document.getElementById("username-display").innerText = `👤 ${nombreUsuario}`;
+    }
+});
+
+// funció de audio
+function playSong(songName) {
+    audio.pause();
+    audio.src = `audio/${songName}.mp3`;
+    audio.play().catch(e => console.log("Esperando interacción del usuario"));
+}
 
 document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
@@ -48,23 +85,13 @@ document.querySelectorAll('.card').forEach(card => {
     });
 });
 
-btnPlayHero.addEventListener('click', () => {
-    if (!selectedGenre) {
-        alert("¡Selecciona primero un estilo musical!");
-        return;
-    }
+document.getElementById('btn-play-hero').addEventListener('click', () => {
+    if (!selectedGenre) { alert("¡Selecciona un estilo!"); return; }
     startQuiz(selectedGenre);
 });
 
 function startQuiz(genre) {
-    // Mezclar preguntas aleatoriamente según instrucciones del README
     currentQuestions = (questionsData[genre] || []).sort(() => Math.random() - 0.5);
-    
-    if (currentQuestions.length === 0) {
-        alert("Próximamente más temas de este estilo.");
-        return;
-    }
-
     currentQuestionIndex = 0;
     genreTag.innerText = genre.toUpperCase();
     mainMenu.classList.add('hidden');
@@ -72,12 +99,30 @@ function startQuiz(genre) {
     loadQuestion();
 }
 
+function startTimer() {
+    timeLeft = 15;
+    timerDisplay.innerText = `Tiempo: ${timeLeft}s`;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = `Tiempo: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            checkAnswer(-1);
+        }
+    }, 1000);
+}
 
 function loadQuestion() {
+    startTimer();
     const q = currentQuestions[currentQuestionIndex];
+    
+
+    //  sonido de las canciones
+    playSong(q.song);
+    
     songNameText.innerText = `🎵 Fragmento de: "${q.song}"`;
     optionsContainer.innerHTML = '';
-    
     q.options.forEach((option, index) => {
         const div = document.createElement('div');
         div.classList.add('option-card');
@@ -88,20 +133,20 @@ function loadQuestion() {
 }
 
 function checkAnswer(idx) {
+    clearInterval(timer);
+    audio.pause(); // Detener audio al responder
     const q = currentQuestions[currentQuestionIndex];
-    if (idx === q.correct) {
-        alert("¡Correcto! ✅");
-    } else {
-        alert(`Incorrecto. Era ${q.options[q.correct]}`);
-    }
+    
+    if (idx === q.correct) { alert("¡Correcto! ✅"); } 
+    else { alert(idx === -1 ? "¡Tiempo agotado!" : `Incorrecto. Era ${q.options[q.correct]}`); }
 
     currentQuestionIndex++;
     if (currentQuestionIndex < currentQuestions.length) {
         loadQuestion();
     } else {
-        alert("¡Has completado el nivel!");
+        alert("¡Has terminado el nivel!");
         location.reload();
     }
 }
 
-document.getElementById('btn-exit').onclick = () => location.reload();
+document.getElementById('btn-exit').onclick = () => { audio.pause(); location.reload(); };
