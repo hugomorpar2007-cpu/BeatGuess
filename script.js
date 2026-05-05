@@ -1,6 +1,6 @@
 const questionsData = {
     "Pop": [
-        { song: "TQG", options: ["Jennifer Lopez", "Shakira", "Karol G", "Anitta"], correct: 2 },
+        { song: "TQG", options: ["Jennifer Lopez", "Bizarrap", "Karol G", "Anitta"], correct: 2 },
         { song: "Despechá", options: ["Nathy Peluso", "Bad Gyal", "Rosalía", "Tokischa"], correct: 2 },
         { song: "Flowers", options: ["Selena Gomez", "Katy Perry", "Miley Cyrus", "Taylor Swift"], correct: 2 },
         { song: "Blinding Lights", options: ["Bruno Mars", "The Weeknd", "Drake", "Justin Bieber"], correct: 1 },
@@ -11,11 +11,11 @@ const questionsData = {
         { song: "Todo de Ti", options: ["Sebastian Yatra", "Rauw Alejandro", "Ricky Martin", "Luis Fonsi"], correct: 1 },
         { song: "Shivers", options: ["Lewis Capaldi", "Ed Sheeran", "Tom Walker", "George Ezra"], correct: 1 }
     ],
-    "Hip-Hop": [
+    "Urbano": [
         { song: "Dracukeo", options: ["Yung Beef", "Kidd Keo", "C. Tangana", "Kaydy Cain"], correct: 1 },
         { song: "Safaera", options: ["Anuel AA", "J Balvin", "Rauw Alejandro", "Bad Bunny"], correct: 3 },
         { song: "Columbia", options: ["Quevedo", "Myke Towers", "Feid", "Mora"], correct: 0 },
-        { song: "Baby Hello", options: ["Mora", "Bizarrap", "Jhayco", "Trueno"], correct: 1 },
+        { song: "Baby Hello", options: ["Mora", "Rauw Alejandro", "Jhayco", "Trueno"], correct: 1 },
         { song: "Lala", options: ["Ozuna", "Myke Towers", "Maluma", "Arcángel"], correct: 1 },
         { song: "Bzrp Music Sessions, Vol. 52", options: ["Tiago PZK", "Villano Antillano", "Quevedo", "Eladio Carrión"], correct: 2 },
         { song: "Lollypop", options: ["Anuel AA", "Bad Bunny", "Bryant Myers", "Kidd Keo"], correct: 3 },
@@ -24,28 +24,28 @@ const questionsData = {
         { song: "Vista al Mar", options: ["Feid", "Quevedo", "Rauw Alejandro", "Myke Towers"], correct: 1 }
     ],
     "Rock": [
-        { song: "Bohemian Rhapsody", options: ["Queen", "The Beatles", "Led Zeppelin", "Deep Purple"], correct: 0 },
-        { song: "Smells Like Teen Spirit", options: ["Nirvana", "Pearl Jam", "Foo Fighters", "Soundgarden"], correct: 0 },
-        { song: "Back In Black", options: ["AC/DC", "Guns N' Roses", "Iron Maiden", "Metallica"], correct: 0 },
+        { song: "Bohemian Rhapsody", options: ["Led Zeppelin", "The Beatles", "Queen", "Deep Purple"], correct: 2 },
+        { song: "Smells Like Teen Spirit", options: ["Pearl Jam", "Nirvana", "Foo Fighters", "Soundgarden"], correct: 1 },
+        { song: "Back In Black", options: ["Guns N' Roses", "AC/DC", "Iron Maiden", "Metallica"], correct: 1 },
         { song: "Highway to Hell", options: ["AC/DC", "Led Zeppelin", "Black Sabbath", "The Rolling Stones"], correct: 0 },
-        { song: "Sweet Child O' Mine", options: ["Guns N' Roses", "Bon Jovi", "Aerosmith", "Def Leppard"], correct: 0 },
+        { song: "Sweet Child O' Mine", options: ["Bon Jovi", "Guns N' Roses", "Aerosmith", "Def Leppard"], correct: 1 },
         { song: "Under the Bridge", options: ["Red Hot Chili Peppers", "Green Day", "Radiohead", "U2"], correct: 0 },
         { song: "Wonderwall", options: ["Oasis", "Blur", "The Verve", "Coldplay"], correct: 0 },
-        { song: "Seven Nation Army", options: ["The White Stripes", "The Strokes", "The Black Keys", "Arctic Monkeys"], correct: 0 },
-        { song: "Enter Sandman", options: ["Metallica", "Megadeth", "Pantera", "Slayer"], correct: 0 },
+        { song: "Seven Nation Army", options: ["Artic Monkeys", "The Strokes", "The Black Keys", "The White Stripes"], correct: 3 },
+        { song: "Enter Sandman", options: ["Pantera", "Megadeth", "Metallica", "Slayer"], correct: 2 },
         { song: "Livin' on a Prayer", options: ["Bon Jovi", "Journey", "Van Halen", "Whitesnake"], correct: 0 }
     ],
     "Electrónica": [
-        { song: "Levels", options: ["Avicii", "Tiësto", "David Guetta", "Skrillex"], correct: 0 },
-        { song: "Titanium", options: ["David Guetta", "Calvin Harris", "Alesso", "Zedd"], correct: 0 },
-        { song: "Animals", options: ["Martin Garrix", "Hardwell", "Nicky Romero", "Dimitri Vegas"], correct: 0 },
-        { song: "One More Time", options: ["Daft Punk", "Justice", "Chemical Brothers", "Fatboy Slim"], correct: 0 },
-        { song: "Clarity", options: ["Zedd", "Kaskade", "Porter Robinson", "Madeon"], correct: 0 },
-        { song: "Lean On", options: ["Major Lazer", "Diplo", "DJ Snake", "Skrillex"], correct: 0 },
+        { song: "Levels", options: ["Skrillex", "Tiësto", "David Guetta", "Avicii"], correct: 3 },
+        { song: "Titanium", options: ["Calvin Harris", "David Guetta", "Alesso", "Zedd"], correct: 1 },
+        { song: "Animals", options: ["Hardwell", "Martin Garrix", "Nicky Romero", "Dimitri Vegas"], correct: 1 },
+        { song: "One More Time", options: ["Fatboy Slim", "Justice", "Chemical Brothers", "Daft Punk"], correct: 0 },
+        { song: "Clarity", options: ["Kaskade", "Zedd", "Porter Robinson", "Madeon"], correct: 1 },
+        { song: "Lean On", options: ["DJ Snake", "Diplo", "Major Lazer", "Skrillex"], correct: 2 },
         { song: "Don't You Worry Child", options: ["Swedish House Mafia", "Axwell", "Sebastian Ingrosso", "Steve Angello"], correct: 0 },
         { song: "Wake Me Up", options: ["Avicii", "Kygo", "Robin Schulz", "Lost Frequencies"], correct: 0 },
-        { song: "Prayer in C", options: ["Lilly Wood & The Prick", "Bakermat", "Klingande", "Felix Jaehn"], correct: 0 },
-        { song: "Summer", options: ["Calvin Harris", "Avicii", "Alesso", "Sigala"], correct: 0 }
+        { song: "Prayer in C", options: ["Klingande", "Bakermat", "Lilly Wood & The Prick", "Felix Jaehn"], correct: 2 },
+        { song: "Summer", options: ["Sigala", "Avicii", "Alesso", "Calvin Harris"], correct: 3 }
     ]
 };
 
