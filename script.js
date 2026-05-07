@@ -1,6 +1,8 @@
+const pb = new PocketBase('/');
+
 const questionsData = {
     "Pop": [
-        { song: "TQG", options: ["Jennifer Lopez", "Shakira", "Karol G", "Anitta"], correct: 2 },
+        { song: "TQG", options: ["Jennifer Lopez", "Bizarrap", "Karol G", "Anitta"], correct: 2 },
         { song: "Despechá", options: ["Nathy Peluso", "Bad Gyal", "Rosalía", "Tokischa"], correct: 2 },
         { song: "Flowers", options: ["Selena Gomez", "Katy Perry", "Miley Cyrus", "Taylor Swift"], correct: 2 },
         { song: "Blinding Lights", options: ["Bruno Mars", "The Weeknd", "Drake", "Justin Bieber"], correct: 1 },
@@ -11,11 +13,11 @@ const questionsData = {
         { song: "Todo de Ti", options: ["Sebastian Yatra", "Rauw Alejandro", "Ricky Martin", "Luis Fonsi"], correct: 1 },
         { song: "Shivers", options: ["Lewis Capaldi", "Ed Sheeran", "Tom Walker", "George Ezra"], correct: 1 }
     ],
-    "Hip-Hop": [
+    "Urbano": [
         { song: "Dracukeo", options: ["Yung Beef", "Kidd Keo", "C. Tangana", "Kaydy Cain"], correct: 1 },
         { song: "Safaera", options: ["Anuel AA", "J Balvin", "Rauw Alejandro", "Bad Bunny"], correct: 3 },
         { song: "Columbia", options: ["Quevedo", "Myke Towers", "Feid", "Mora"], correct: 0 },
-        { song: "Baby Hello", options: ["Mora", "Bizarrap", "Jhayco", "Trueno"], correct: 1 },
+        { song: "Baby Hello", options: ["Mora", "Rauw Alejandro", "Jhayco", "Trueno"], correct: 1 },
         { song: "Lala", options: ["Ozuna", "Myke Towers", "Maluma", "Arcángel"], correct: 1 },
         { song: "Bzrp Music Sessions, Vol. 52", options: ["Tiago PZK", "Villano Antillano", "Quevedo", "Eladio Carrión"], correct: 2 },
         { song: "Lollypop", options: ["Anuel AA", "Bad Bunny", "Bryant Myers", "Kidd Keo"], correct: 3 },
@@ -24,28 +26,28 @@ const questionsData = {
         { song: "Vista al Mar", options: ["Feid", "Quevedo", "Rauw Alejandro", "Myke Towers"], correct: 1 }
     ],
     "Rock": [
-        { song: "Bohemian Rhapsody", options: ["Queen", "The Beatles", "Led Zeppelin", "Deep Purple"], correct: 0 },
-        { song: "Smells Like Teen Spirit", options: ["Nirvana", "Pearl Jam", "Foo Fighters", "Soundgarden"], correct: 0 },
-        { song: "Back In Black", options: ["AC/DC", "Guns N' Roses", "Iron Maiden", "Metallica"], correct: 0 },
+        { song: "Bohemian Rhapsody", options: ["Led Zeppelin", "The Beatles", "Queen", "Deep Purple"], correct: 2 },
+        { song: "Smells Like Teen Spirit", options: ["Pearl Jam", "Nirvana", "Foo Fighters", "Soundgarden"], correct: 1 },
+        { song: "Back In Black", options: ["Guns N' Roses", "AC/DC", "Iron Maiden", "Metallica"], correct: 1 },
         { song: "Highway to Hell", options: ["AC/DC", "Led Zeppelin", "Black Sabbath", "The Rolling Stones"], correct: 0 },
-        { song: "Sweet Child O' Mine", options: ["Guns N' Roses", "Bon Jovi", "Aerosmith", "Def Leppard"], correct: 0 },
+        { song: "Sweet Child O' Mine", options: ["Bon Jovi", "Guns N' Roses", "Aerosmith", "Def Leppard"], correct: 1 },
         { song: "Under the Bridge", options: ["Red Hot Chili Peppers", "Green Day", "Radiohead", "U2"], correct: 0 },
         { song: "Wonderwall", options: ["Oasis", "Blur", "The Verve", "Coldplay"], correct: 0 },
-        { song: "Seven Nation Army", options: ["The White Stripes", "The Strokes", "The Black Keys", "Arctic Monkeys"], correct: 0 },
-        { song: "Enter Sandman", options: ["Metallica", "Megadeth", "Pantera", "Slayer"], correct: 0 },
+        { song: "Seven Nation Army", options: ["Artic Monkeys", "The Strokes", "The Black Keys", "The White Stripes"], correct: 3 },
+        { song: "Enter Sandman", options: ["Pantera", "Megadeth", "Metallica", "Slayer"], correct: 2 },
         { song: "Livin' on a Prayer", options: ["Bon Jovi", "Journey", "Van Halen", "Whitesnake"], correct: 0 }
     ],
     "Electrónica": [
-        { song: "Levels", options: ["Avicii", "Tiësto", "David Guetta", "Skrillex"], correct: 0 },
-        { song: "Titanium", options: ["David Guetta", "Calvin Harris", "Alesso", "Zedd"], correct: 0 },
-        { song: "Animals", options: ["Martin Garrix", "Hardwell", "Nicky Romero", "Dimitri Vegas"], correct: 0 },
-        { song: "One More Time", options: ["Daft Punk", "Justice", "Chemical Brothers", "Fatboy Slim"], correct: 0 },
-        { song: "Clarity", options: ["Zedd", "Kaskade", "Porter Robinson", "Madeon"], correct: 0 },
-        { song: "Lean On", options: ["Major Lazer", "Diplo", "DJ Snake", "Skrillex"], correct: 0 },
+        { song: "Levels", options: ["Skrillex", "Tiësto", "David Guetta", "Avicii"], correct: 3 },
+        { song: "Titanium", options: ["Calvin Harris", "David Guetta", "Alesso", "Zedd"], correct: 1 },
+        { song: "Animals", options: ["Hardwell", "Martin Garrix", "Nicky Romero", "Dimitri Vegas"], correct: 1 },
+        { song: "One More Time", options: ["Fatboy Slim", "Justice", "Chemical Brothers", "Daft Punk"], correct: 0 },
+        { song: "Clarity", options: ["Kaskade", "Zedd", "Porter Robinson", "Madeon"], correct: 1 },
+        { song: "Lean On", options: ["DJ Snake", "Diplo", "Major Lazer", "Skrillex"], correct: 2 },
         { song: "Don't You Worry Child", options: ["Swedish House Mafia", "Axwell", "Sebastian Ingrosso", "Steve Angello"], correct: 0 },
         { song: "Wake Me Up", options: ["Avicii", "Kygo", "Robin Schulz", "Lost Frequencies"], correct: 0 },
-        { song: "Prayer in C", options: ["Lilly Wood & The Prick", "Bakermat", "Klingande", "Felix Jaehn"], correct: 0 },
-        { song: "Summer", options: ["Calvin Harris", "Avicii", "Alesso", "Sigala"], correct: 0 }
+        { song: "Prayer in C", options: ["Klingande", "Bakermat", "Lilly Wood & The Prick", "Felix Jaehn"], correct: 2 },
+        { song: "Summer", options: ["Sigala", "Avicii", "Alesso", "Calvin Harris"], correct: 3 }
     ]
 };
 
@@ -54,7 +56,8 @@ let currentQuestions = [];
 let currentQuestionIndex = 0;
 let timer;
 let timeLeft = 15;
-let audio = new Audio(); // Instancia global de audio
+let score = 0; 
+let audio = new Audio();
 
 const mainMenu = document.getElementById('main-menu');
 const gameScreen = document.getElementById('game-screen');
@@ -62,19 +65,49 @@ const optionsContainer = document.getElementById('options-container');
 const songNameText = document.getElementById('song-name');
 const genreTag = document.getElementById('current-genre-text');
 const timerDisplay = document.getElementById('timer-bar');
+const scoreDisplay = document.getElementById('score-display'); 
 
 document.addEventListener("DOMContentLoaded", () => {
     const nombreUsuario = localStorage.getItem("usuario");
     if (nombreUsuario) {
         document.getElementById("username-display").innerText = `👤 ${nombreUsuario}`;
     }
+    cargarRanking();
 });
 
-// funció de audio
+async function cargarRanking() {
+    const list = document.getElementById('ranking-list');
+    if (!list) return;
+    try {
+        const records = await pb.collection('ranking').getList(1, 50, { sort: '-points' });
+        
+        const sortedItems = records.items.sort((a, b) => {
+            if (b.points !== a.points) {
+                return b.points - a.points; 
+            }
+          
+            return b.id.localeCompare(a.id); 
+        });
+
+        list.innerHTML = sortedItems.slice(0, 5).map((r, i) => `${i + 1}. ${r.username}: ${r.points} pts`).join('<br>');
+    } catch (e) { 
+        console.error("Error:", e);
+        list.innerHTML = "Error al cargar ranking"; 
+    }
+}
+
+async function guardarPuntuacion(puntos) {
+    const user = localStorage.getItem("usuario") || "Anónimo";
+    try {
+        await pb.collection('ranking').create({ username: user, points: puntos });
+        cargarRanking();
+    } catch (e) { console.error("Error al guardar:", e); }
+}
+
 function playSong(songName) {
     audio.pause();
     audio.src = `audio/${songName}.mp3`;
-    audio.play().catch(e => console.log("Esperando interacción del usuario"));
+    audio.play().catch(e => console.log("Esperando interacción"));
 }
 
 document.querySelectorAll('.card').forEach(card => {
@@ -93,6 +126,8 @@ document.getElementById('btn-play-hero').addEventListener('click', () => {
 function startQuiz(genre) {
     currentQuestions = (questionsData[genre] || []).sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
+    score = 0;
+    if(scoreDisplay) scoreDisplay.innerText = "Puntos: 0";
     genreTag.innerText = genre.toUpperCase();
     mainMenu.classList.add('hidden');
     gameScreen.classList.remove('hidden');
@@ -116,11 +151,7 @@ function startTimer() {
 function loadQuestion() {
     startTimer();
     const q = currentQuestions[currentQuestionIndex];
-    
-
-    //  sonido de las canciones
     playSong(q.song);
-    
     songNameText.innerText = `🎵 Fragmento de: "${q.song}"`;
     optionsContainer.innerHTML = '';
     q.options.forEach((option, index) => {
@@ -134,19 +165,30 @@ function loadQuestion() {
 
 function checkAnswer(idx) {
     clearInterval(timer);
-    audio.pause(); // Detener audio al responder
+    audio.pause();
     const q = currentQuestions[currentQuestionIndex];
     
-    if (idx === q.correct) { alert("¡Correcto! ✅"); } 
-    else { alert(idx === -1 ? "¡Tiempo agotado!" : `Incorrecto. Era ${q.options[q.correct]}`); }
+    if (idx === q.correct) { 
+        score += 10;
+        if(scoreDisplay) scoreDisplay.innerText = "Puntos: " + score;
+        alert("¡Correcto! ✅"); 
+    } else { 
+        alert(idx === -1 ? "¡Tiempo agotado!" : `Incorrecto. Era ${q.options[q.correct]}`); 
+    }
 
     currentQuestionIndex++;
     if (currentQuestionIndex < currentQuestions.length) {
         loadQuestion();
     } else {
-        alert("¡Has terminado el nivel!");
+        alert("¡Nivel terminado! Puntos: " + score);
+        guardarPuntuacion(score);
         location.reload();
     }
+}
+
+function borrarUsuario() {
+    localStorage.removeItem("usuario"); 
+    window.location.href = "login.html";
 }
 
 document.getElementById('btn-exit').onclick = () => { audio.pause(); location.reload(); };
