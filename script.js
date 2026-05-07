@@ -1,3 +1,5 @@
+const pb = new PocketBase('/');
+
 const questionsData = {
     "Pop": [
         { song: "TQG", options: ["Jennifer Lopez", "Bizarrap", "Karol G", "Anitta"], correct: 2 },
@@ -54,7 +56,8 @@ let currentQuestions = [];
 let currentQuestionIndex = 0;
 let timer;
 let timeLeft = 15;
-let audio = new Audio(); // Instancia global de audio
+let score = 0; 
+let audio = new Audio();
 
 const mainMenu = document.getElementById('main-menu');
 const gameScreen = document.getElementById('game-screen');
@@ -62,19 +65,49 @@ const optionsContainer = document.getElementById('options-container');
 const songNameText = document.getElementById('song-name');
 const genreTag = document.getElementById('current-genre-text');
 const timerDisplay = document.getElementById('timer-bar');
+const scoreDisplay = document.getElementById('score-display'); 
 
 document.addEventListener("DOMContentLoaded", () => {
     const nombreUsuario = localStorage.getItem("usuario");
     if (nombreUsuario) {
         document.getElementById("username-display").innerText = `👤 ${nombreUsuario}`;
     }
+    cargarRanking();
 });
 
-// funció de audio
+async function cargarRanking() {
+    const list = document.getElementById('ranking-list');
+    if (!list) return;
+    try {
+        const records = await pb.collection('ranking').getList(1, 50, { sort: '-points' });
+        
+        const sortedItems = records.items.sort((a, b) => {
+            if (b.points !== a.points) {
+                return b.points - a.points; 
+            }
+          
+            return b.id.localeCompare(a.id); 
+        });
+
+        list.innerHTML = sortedItems.slice(0, 5).map((r, i) => `${i + 1}. ${r.username}: ${r.points} pts`).join('<br>');
+    } catch (e) { 
+        console.error("Error:", e);
+        list.innerHTML = "Error al cargar ranking"; 
+    }
+}
+
+async function guardarPuntuacion(puntos) {
+    const user = localStorage.getItem("usuario") || "Anónimo";
+    try {
+        await pb.collection('ranking').create({ username: user, points: puntos });
+        cargarRanking();
+    } catch (e) { console.error("Error al guardar:", e); }
+}
+
 function playSong(songName) {
     audio.pause();
     audio.src = `audio/${songName}.mp3`;
-    audio.play().catch(e => console.log("Esperando interacción del usuario"));
+    audio.play().catch(e => console.log("Esperando interacción"));
 }
 
 document.querySelectorAll('.card').forEach(card => {
@@ -93,6 +126,8 @@ document.getElementById('btn-play-hero').addEventListener('click', () => {
 function startQuiz(genre) {
     currentQuestions = (questionsData[genre] || []).sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
+    score = 0;
+    if(scoreDisplay) scoreDisplay.innerText = "Puntos: 0";
     genreTag.innerText = genre.toUpperCase();
     mainMenu.classList.add('hidden');
     gameScreen.classList.remove('hidden');
@@ -116,11 +151,7 @@ function startTimer() {
 function loadQuestion() {
     startTimer();
     const q = currentQuestions[currentQuestionIndex];
-    
-
-    //  sonido de las canciones
     playSong(q.song);
-    
     songNameText.innerText = `🎵 Fragmento de: "${q.song}"`;
     optionsContainer.innerHTML = '';
     q.options.forEach((option, index) => {
@@ -134,19 +165,30 @@ function loadQuestion() {
 
 function checkAnswer(idx) {
     clearInterval(timer);
-    audio.pause(); // Detener audio al responder
+    audio.pause();
     const q = currentQuestions[currentQuestionIndex];
     
-    if (idx === q.correct) { alert("¡Correcto! ✅"); } 
-    else { alert(idx === -1 ? "¡Tiempo agotado!" : `Incorrecto. Era ${q.options[q.correct]}`); }
+    if (idx === q.correct) { 
+        score += 10;
+        if(scoreDisplay) scoreDisplay.innerText = "Puntos: " + score;
+        alert("¡Correcto! ✅"); 
+    } else { 
+        alert(idx === -1 ? "¡Tiempo agotado!" : `Incorrecto. Era ${q.options[q.correct]}`); 
+    }
 
     currentQuestionIndex++;
     if (currentQuestionIndex < currentQuestions.length) {
         loadQuestion();
     } else {
-        alert("¡Has terminado el nivel!");
+        alert("¡Nivel terminado! Puntos: " + score);
+        guardarPuntuacion(score);
         location.reload();
     }
+}
+
+function borrarUsuario() {
+    localStorage.removeItem("usuario"); 
+    window.location.href = "login.html";
 }
 
 document.getElementById('btn-exit').onclick = () => { audio.pause(); location.reload(); };

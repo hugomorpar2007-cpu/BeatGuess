@@ -6,12 +6,26 @@
   <title>BeatGuess</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
+<script>
+  if (!localStorage.getItem("usuario")) {
+    window.location.href = "login.html";
+  }
+</script>
+
 <body>
 
   <div class="navbar">
     <div class="logo">BeatGuess</div>
-    <div id="username-display" style="font-weight: bold; color: #4cff4c;"></div>
+    
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <div id="username-display" style="font-weight: bold; color: #4cff4c;"></div>
+      <button onclick="borrarUsuario()" style="background: #ff4c4c; border: none; padding: 5px 10px; border-radius: 10px; cursor: pointer; color: white;">
+        Salir
+      </button>
+    </div>
   </div>
+  
 
   <div id="main-menu">
     <div class="hero">
@@ -27,13 +41,13 @@
         <h3>Pop</h3>
         <p>Lo más sonado</p>
       </div>
+      <div class="card" data-genre="Urbano">
+        <h3>Urbano</h3>
+        <p>Flow y beats</p>
+      </div>
       <div class="card" data-genre="Rock">
         <h3>Rock</h3>
         <p>Pura leyenda</p>
-      </div>
-      <div class="card" data-genre="Hip-Hop">
-        <h3>Hip-Hop</h3>
-        <p>Flow y beats</p>
       </div>
       <div class="card" data-genre="Electrónica">
         <h3>Electrónica</h3>
@@ -49,10 +63,9 @@
       </div>
 
       <div class="ranking">
-        <p>TU PUESTO</p>
-        <h1>#128</h1>
-        <p>Entre los mejores</p>
-        <button>Ver ranking</button>
+        <p>TOP JUGADORES</p>
+        <div id="ranking-list" style="margin: 10px 0; color: white;">Cargando...</div>
+        <button onclick="cargarRanking()">Actualizar ranking</button>
       </div>
     </div>
   </div>
@@ -60,19 +73,17 @@
   <div id="game-screen" class="hidden">
     <div class="hero">
       <p class="tag" id="current-genre-text">ESTILO</p>
+      
+      <div id="score-display" style="color: #4cff4c; font-size: 20px; font-weight: bold; margin-bottom: 10px;">Puntos: 0</div>
+      
       <div id="timer-bar" style="color: #4cff4c; font-size: 32px; font-weight: bold; margin-bottom: 20px; text-align: center;">Tiempo: 15s</div>
-      
-      <h1 id="question-text">¿Quién canta esta canción?</h1>
-      <p class="subtitle" id="song-name">Escuchando...</p>
-      
+      <h1 id="song-name">🎵 Cargando...</h1>
       <div id="options-container"></div>
-
-      <button id="btn-exit" style="background: transparent; border: 1px solid #4cff4c; color: white; margin-top: 30px;">
-        Volver al menú
-      </button>
+      <button id="btn-exit" style="margin-top: 20px;">Volver al menú</button>
     </div>
   </div>
 
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
